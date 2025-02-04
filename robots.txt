@@ -1,0 +1,5 @@
+(https://cl0cktree.github.io/jsonframe/robots.txt)
+User-agent: *
+Disallow: /sub/
+Disallow: /data/
+Disallow: /cover/
