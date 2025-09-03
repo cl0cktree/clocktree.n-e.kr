@@ -19,7 +19,7 @@ $(function(){
 	var class_add;
 	var frame_year;
 	var $layer_sel;
-	var wearther_out;
+	var weather_out;
 	var weather_now;
 	var name_header=document.querySelector('.header');
 	var name_footer=document.getElementsByTagName('footer');
@@ -98,7 +98,7 @@ $(function(){
 			// };
 			// function weather_starter(){
 			// 	if((weather_now.innerHTML=='Clear')&&((weather_now.innerHTML!==null)||(weather_now.innerHTML!==''))){
-			// 		console.log('weathe = '+wearther_out);
+			// 		console.log('weathe = '+weather_out);
 			// 		weather_canvas();
 			// 	};
 			// };
@@ -1986,27 +1986,27 @@ $(function(){
 					$('.filter-landing-contents').append('<div class="cover-city"><span class="weather_place">'+place+'</span> : <span class="weather_tempt">'+tempt+'℃</span> / <span class="weather_now">'+weather_this+'</span></div>');
 					if(document.querySelector('.weather_now')){
 						weather_now = document.querySelector('.weather_now');
-						wearther_out = weather_now.innerHTML;
-						if((wearther_out=='Clear')&&((wearther_out!==null)||(wearther_out!==''))){
+						weather_out = weather_now.innerHTML;
+						if((weather_out=='Clear')&&((weather_out!==null)||(weather_out!==''))){
 							weather_Clear();
-						}else if((wearther_out=='Fine')&&((wearther_out!==null)||(wearther_out!==''))){
+						}else if((weather_out=='Fine')&&((weather_out!==null)||(weather_out!==''))){
 							weather_Fine();
-						}else if((wearther_out=='Wind')&&((wearther_out!==null)||(wearther_out!==''))){
+						}else if((weather_out=='Wind')&&((weather_out!==null)||(weather_out!==''))){
 							weather_Wind();
-						}else if((wearther_out=='Rain')&&((wearther_out!==null)||(wearther_out!==''))){
+						}else if((weather_out=='Rain')&&((weather_out!==null)||(weather_out!==''))){
 							weather_Rain();
-						}else if((wearther_out=='Snow')&&((wearther_out!==null)||(wearther_out!==''))){
+						}else if((weather_out=='Snow')&&((weather_out!==null)||(weather_out!==''))){
 							weather_Snow();
-						}else if((wearther_out=='Clouds')&&((wearther_out!==null)||(wearther_out!==''))){
+						}else if((weather_out=='Clouds')&&((weather_out!==null)||(weather_out!==''))){
 							weather_Clouds();
-						}else if((wearther_out=='Overcast')&&((wearther_out!==null)||(wearther_out!==''))){
+						}else if((weather_out=='Overcast')&&((weather_out!==null)||(weather_out!==''))){
 							weather_Overcast();
-						}else if((wearther_out=='Mist')&&((wearther_out!==null)||(wearther_out!==''))){
+						}else if((weather_out=='Mist')&&((weather_out!==null)||(weather_out!==''))){
 							weather_Mist();
-						}else if((wearther_out=='Haze')&&((wearther_out!==null)||(wearther_out!==''))){
+						}else if((weather_out=='Haze')&&((weather_out!==null)||(weather_out!==''))){
 							weather_Haze();
 						};
-						console.log('weather is '+wearther_out+' now.');
+						console.log('weather is '+weather_out+' now.');
 					}
 					
 				};
