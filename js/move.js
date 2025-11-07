@@ -19,7 +19,7 @@ $(function(){
 	var class_add;
 	var frame_year;
 	var $layer_sel;
-	var weather_out;
+	var wearther_out;
 	var weather_now;
 	var name_header=document.querySelector('.header');
 	var name_footer=document.getElementsByTagName('footer');
@@ -58,6 +58,12 @@ $(function(){
 		}else if((this_url=='www.clocktree.n-e.kr/')||(this_url=='www.clocktree.n-e.kr/index.html')||(this_url=='www.clocktree.n-e.kr/sub/sub1.html')||(this_url=='www.clocktree.n-e.kr/sub/sub2.html')||(this_url=='www.clocktree.n-e.kr/sub/sub3.html')||(this_url=='www.clocktree.n-e.kr/sub/sub4.html')||(this_url=='www.clocktree.n-e.kr/sub/sub5.html')){
 			portfolioindex_url = 'https://www.clocktree.n-e.kr'
 			console.log('type_10 = '+portfolioindex_url);
+		}else if((this_url=='cl0cktree.github.io/clocktree.co.kr/')||(this_url=='cl0cktree.github.io/clocktree.co.kr/index.html')||(this_url=='cl0cktree.github.io/clocktree.co.kr/sub/sub1.html')||(this_url=='cl0cktree.github.io/clocktree.co.kr/sub/sub2.html')||(this_url=='cl0cktree.github.io/clocktree.co.kr/sub/sub3.html')||(this_url=='cl0cktree.github.io/clocktree.co.kr/sub/sub4.html')||(this_url=='cl0cktree.github.io/clocktree.co.kr/sub/sub5.html')){
+			portfolioindex_url = 'https://cl0cktree.github.io/clocktree.co.kr'
+			console.log('type_11 = '+portfolioindex_url);
+		}else if((this_url=='http://www.clocktree.co.kr/')||(this_url=='http://www.clocktree.co.kr/index.html')||(this_url=='http://www.clocktree.co.kr/sub/sub1.html')||(this_url=='http://www.clocktree.co.kr/sub/sub2.html')||(this_url=='http://www.clocktree.co.kr/sub/sub3.html')||(this_url=='http://www.clocktree.co.kr/sub/sub4.html')||(this_url=='http://www.clocktree.co.kr/sub/sub5.html')){
+			portfolioindex_url = 'http://www.clocktree.co.kr'
+			console.log('type_12 = '+portfolioindex_url);
 		};
 		jsonCover_data=portfolioindex_url+'/data/cover_data.json';
 		jsonHeader_data=portfolioindex_url+'/data/header_data.json';
@@ -98,7 +104,7 @@ $(function(){
 			// };
 			// function weather_starter(){
 			// 	if((weather_now.innerHTML=='Clear')&&((weather_now.innerHTML!==null)||(weather_now.innerHTML!==''))){
-			// 		console.log('weathe = '+weather_out);
+			// 		console.log('weathe = '+wearther_out);
 			// 		weather_canvas();
 			// 	};
 			// };
@@ -733,7 +739,7 @@ $(function(){
 				frame_year=item.data_years;
 				function contents_box(){
 					$('.move-wrap'+work_years).append('<div class="scrollall-con-box" id="scroll'+work_years+'-con-box'+item.years_num+'" aria-haspopup="true" role="button" tabindex="0"><div id="con-box'+work_years+'-imgborder'+item.years_num+'" class="con-box-imgborder">\
-					<img src="'+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
+					<img src="'+portfolioindex_url+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
 					
 					$('.move-wrap'+work_years).find('.box-all-empty').attr('data-empty','true').remove();
 				};
@@ -823,7 +829,7 @@ $(function(){
 				frame_year=item.data_years;
 				function contents_box(){
 					$('.move-wrap'+work_years).append('<div class="scrollall-con-box" id="scroll'+work_years+'-con-box'+item.years_num+'" aria-haspopup="true" role="button" tabindex="0"><div id="con-box'+work_years+'-imgborder'+item.years_num+'" class="con-box-imgborder">\
-					<img src="'+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
+					<img src="'+portfolioindex_url+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
 					$('.move-wrap'+work_years).find('.box-all-empty').attr('data-empty','true').remove();
 				};
 				// function empty_box(){
@@ -899,7 +905,7 @@ $(function(){
 				frame_year=item.data_years;
 				function contents_box(){
 					$('.move-wrap'+work_years).append('<div class="scrollall-con-box" id="scroll'+work_years+'-con-box'+item.years_num+'" aria-haspopup="true" role="button" tabindex="0"><div id="con-box'+work_years+'-imgborder'+item.years_num+'" class="con-box-imgborder">\
-					<img src="'+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
+					<img src="'+portfolioindex_url+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
 					
 					$('.move-wrap'+work_years).find('.box-all-empty').attr('data-empty','true').remove();
 				};
@@ -976,7 +982,7 @@ $(function(){
 				frame_year=item.data_years;
 				function contents_box(){
 					$('.move-wrap'+work_years).append('<div class="scrollall-con-box" id="scroll'+work_years+'-con-box'+item.years_num+'" aria-haspopup="true" role="button" tabindex="0"><div id="con-box'+work_years+'-imgborder'+item.years_num+'" class="con-box-imgborder">\
-					<img src="'+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
+					<img src="'+portfolioindex_url+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
 					
 					$('.move-wrap'+work_years).find('.box-all-empty').attr('data-empty','true').remove();
 				};
@@ -1053,7 +1059,7 @@ $(function(){
 				frame_year=item.data_years;
 				function contents_box(){
 					$('.move-wrap'+work_years).append('<div class="scrollall-con-box" id="scroll'+work_years+'-con-box'+item.years_num+'" aria-haspopup="true" role="button" tabindex="0"><div id="con-box'+work_years+'-imgborder'+item.years_num+'" class="con-box-imgborder">\
-					<img src="'+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
+					<img src="'+portfolioindex_url+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
 					
 					$('.move-wrap'+work_years).find('.box-all-empty').attr('data-empty','true').remove();
 				};
@@ -1986,27 +1992,27 @@ $(function(){
 					$('.filter-landing-contents').append('<div class="cover-city"><span class="weather_place">'+place+'</span> : <span class="weather_tempt">'+tempt+'℃</span> / <span class="weather_now">'+weather_this+'</span></div>');
 					if(document.querySelector('.weather_now')){
 						weather_now = document.querySelector('.weather_now');
-						weather_out = weather_now.innerHTML;
-						if((weather_out=='Clear')&&((weather_out!==null)||(weather_out!==''))){
+						wearther_out = weather_now.innerHTML;
+						if((wearther_out=='Clear')&&((wearther_out!==null)||(wearther_out!==''))){
 							weather_Clear();
-						}else if((weather_out=='Fine')&&((weather_out!==null)||(weather_out!==''))){
+						}else if((wearther_out=='Fine')&&((wearther_out!==null)||(wearther_out!==''))){
 							weather_Fine();
-						}else if((weather_out=='Wind')&&((weather_out!==null)||(weather_out!==''))){
+						}else if((wearther_out=='Wind')&&((wearther_out!==null)||(wearther_out!==''))){
 							weather_Wind();
-						}else if((weather_out=='Rain')&&((weather_out!==null)||(weather_out!==''))){
+						}else if((wearther_out=='Rain')&&((wearther_out!==null)||(wearther_out!==''))){
 							weather_Rain();
-						}else if((weather_out=='Snow')&&((weather_out!==null)||(weather_out!==''))){
+						}else if((wearther_out=='Snow')&&((wearther_out!==null)||(wearther_out!==''))){
 							weather_Snow();
-						}else if((weather_out=='Clouds')&&((weather_out!==null)||(weather_out!==''))){
+						}else if((wearther_out=='Clouds')&&((wearther_out!==null)||(wearther_out!==''))){
 							weather_Clouds();
-						}else if((weather_out=='Overcast')&&((weather_out!==null)||(weather_out!==''))){
+						}else if((wearther_out=='Overcast')&&((wearther_out!==null)||(wearther_out!==''))){
 							weather_Overcast();
-						}else if((weather_out=='Mist')&&((weather_out!==null)||(weather_out!==''))){
+						}else if((wearther_out=='Mist')&&((wearther_out!==null)||(wearther_out!==''))){
 							weather_Mist();
-						}else if((weather_out=='Haze')&&((weather_out!==null)||(weather_out!==''))){
+						}else if((wearther_out=='Haze')&&((wearther_out!==null)||(wearther_out!==''))){
 							weather_Haze();
 						};
-						console.log('weather is '+weather_out+' now.');
+						console.log('weather is '+wearther_out+' now.');
 					}
 					
 				};
