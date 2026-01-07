@@ -353,13 +353,17 @@ $(function(){
 			}else if (split_url=='sub1.html'){
 				introSommon();
 			}else if (split_url=='sub2.html'){
-				webSommon();
+				// webSommon();
+				new PageSummon('웹작업페이지 콘텐츠 묶음','<h2>웹&앱 퍼블리싱</h2>','web');
 			}else if (split_url=='sub3.html'){
-				movieSommon();
+				// movieSommon();
+				new PageSummon('동영상작업페이지 콘텐츠 묶음','<h2>동영상 편집작업</h2>','movie');
 			}else if (split_url=='sub4.html'){
-				flashSommon();
+				// flashSommon();
+				new PageSummon('플래시작업페이지 콘텐츠 묶음','<h2>플래시</h2>','flash');
 			}else if (split_url=='sub5.html'){
-				imageSommon();
+				// imageSommon();
+				new PageSummon('랜더링및편집작업페이지 콘텐츠 묶음','<h2>2D랜더링&편집작업</h2>','image');
 			}
 			$('.section-heading').html(contents_head);
 		};
@@ -522,8 +526,10 @@ $(function(){
 				$('.body-filter-preloader').hide();
 				history.pushState(null,null,portfolioindex_url+'/index.html');
 				title_changer();
+				$('.move-wrap1').addClass('on');
 			}else{
 				location.href=portfolioindex_url+'/index.html'
+				$('.move-wrap1').addClass('on');
 			}
 
 		}else{
@@ -554,6 +560,7 @@ $(function(){
 			$('.body-filter-preloader').hide();
 			history.pushState(null,null,portfolioindex_url+'/index.html');
 			title_changer();
+			$('.move-wrap1').addClass('on');
 		}
 	})
 	$('.body-section-all').on('click','#phon-icon',function(){
@@ -627,22 +634,27 @@ $(function(){
 			}else if (this==document.getElementById('topmenu1-list-span2'))
 			{
 				nav_num = 2;
-				webSommon();
+				// webSommon();
+				new PageSummon('웹작업페이지 콘텐츠 묶음','<h2>웹&앱 퍼블리싱</h2>','web');
 			}else if (this==document.getElementById('topmenu1-list-span3'))
 			{
 				nav_num = 3;
-				movieSommon();
+				// movieSommon();
+				new PageSummon('동영상작업페이지 콘텐츠 묶음','<h2>동영상 편집작업</h2>','movie');
 			}else if (this==document.getElementById('topmenu1-list-span4'))
 			{
 				nav_num = 4;
-				flashSommon();
+				// flashSommon();
+				new PageSummon('플래시작업페이지 콘텐츠 묶음','<h2>플래시</h2>','flash');
 			}else if (this==document.getElementById('topmenu1-list-span5'))
 			{
 				nav_num = 5;
-				imageSommon();
+				// imageSommon();
+				new PageSummon('랜더링및편집작업페이지 콘텐츠 묶음','<h2>2D랜더링&편집작업</h2>','image');
 			}
 			title_changer();
 			nav_move();
+			$('.move-wrap1').addClass('on');
 		}
 	})
 	/*--------------------------------------------------------*/
@@ -681,22 +693,27 @@ $(function(){
 			}else if (this==document.getElementById('list-ul-li2'))
 			{
 				nav_num = 2;
-				webSommon();
+				// webSommon();
+				new PageSummon('웹작업페이지 콘텐츠 묶음','<h2>웹&앱 퍼블리싱</h2>','web');
 			}else if (this==document.getElementById('list-ul-li3'))
 			{
 				nav_num = 3;
-				movieSommon();
+				// movieSommon();
+				new PageSummon('동영상작업페이지 콘텐츠 묶음','<h2>동영상 편집작업</h2>','movie');
 			}else if (this==document.getElementById('list-ul-li4'))
 			{
 				nav_num = 4;
-				flashSommon();
+				// flashSommon();
+				new PageSummon('플래시작업페이지 콘텐츠 묶음','<h2>플래시</h2>','flash');
 			}else if (this==document.getElementById('list-ul-li5'))
 			{
 				nav_num = 5;
-				imageSommon();
+				// imageSommon();
+				new PageSummon('랜더링및편집작업페이지 콘텐츠 묶음','<h2>2D랜더링&편집작업</h2>','image');
 			}
 			title_changer();
 			nav_move();
+			$('.move-wrap1').addClass('on');
 		}
 	})
 	/*------------------------------------------------------------------*/
@@ -1127,6 +1144,48 @@ $(function(){
 		$('.main-welcolme-summon').html('<h2>2D랜더링&편집작업</h2>');
 		return false;
 	};
+	/** 각 페이지 버튼 선택 시 공통 작업 페이지 구성 */
+	function PageSummon(head_this, h2_this, data_kind){
+		this.contents_head = head_this;
+		this.contents_h2 = h2_this;
+		this.data_kinds = data_kind;
+		
+		contents_head = this.contents_head;
+		contents_title = this.contents_h2;
+		var page_data = this.data_kinds;
+
+		box_maker();
+		$.getJSON(jsonFrame_data, function(data){
+			$.each(data, function(I, item){
+				frame_year=item.data_years;
+				function contents_box(){
+					$('.move-wrap'+work_years).append('<div class="scrollall-con-box" id="scroll'+work_years+'-con-box'+item.years_num+'" aria-haspopup="true" role="button" tabindex="0"><div id="con-box'+work_years+'-imgborder'+item.years_num+'" class="con-box-imgborder">\
+					<img src="'+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
+					$('.move-wrap'+work_years).find('.box-all-empty').attr('data-empty','true').remove();
+				};
+
+				if(item.data_kinds==page_data){
+					work_years=0;
+					var start_year;
+					var this_year=cal_year;
+
+					for (start_year=2016;start_year<=this_year;start_year++){
+						work_years++;
+						if(frame_year==start_year){
+							contents_box();
+						}
+					};
+				};
+			});
+		});
+		$('.section-heading').html(contents_head);
+		$('.main-welcolme-summon').html(contents_title);
+		return false;
+	};
+	var web_summ = new PageSummon('웹작업페이지 콘텐츠 묶음','<h2>웹&앱 퍼블리싱</h2>','web');
+	var movie_summ = new PageSummon('동영상작업페이지 콘텐츠 묶음','<h2>동영상 편집작업</h2>','movie');
+	var flash_summ = new PageSummon('플래시작업페이지 콘텐츠 묶음','<h2>플래시</h2>','flash');
+	var image_summ = new PageSummon('랜더링및편집작업페이지 콘텐츠 묶음','<h2>2D랜더링&편집작업</h2>','image');
 	/*------------------------------------------------------------------*/
 	/*-모달로그 창 위 컨텐츠의 포커스 요소만 순회하는 함수+esc키 눌렀을 때 모달로그 닫히기+낮은 단계의 레이어 선택 요소에 포커스 유지-*/
 	function conbox_contents(){ // 높은 단계의 모달로그 컨텐츠의 포커스 요소만 순회 함수 + esc 키 눌렀을 시 닫히기
@@ -1285,7 +1344,8 @@ $(function(){
 				$('#list-ul-li2').css({'border':'3px solid #999'})
 				$('#slide-wrap').css({'display':'block'})
 				$('#slide-wrap-i').css({'display':'none'})
-				webSommon();
+				// webSommon();
+				new PageSummon('웹작업페이지 콘텐츠 묶음','<h2>웹&앱 퍼블리싱</h2>','web');
 			}else if(location.href==portfolioindex_url+'/sub/sub3.html'){
 				$('.topmenu1-list-span').css({'border-bottom':'0px solid #bbb'})
 				$('#topmenu1-list-span3').css({'border-bottom':'3px solid #bbb'})
@@ -1295,7 +1355,8 @@ $(function(){
 				$('#list-ul-li3').css({'border':'3px solid #999'})
 				$('#slide-wrap').css({'display':'block'})
 				$('#slide-wrap-i').css({'display':'none'})
-				movieSommon();
+				// movieSommon();
+				new PageSummon('동영상작업페이지 콘텐츠 묶음','<h2>동영상 편집작업</h2>','movie');
 			}else if(location.href==portfolioindex_url+'/sub/sub4.html'){
 				$('.topmenu1-list-span').css({'border-bottom':'0px solid #bbb'})
 				$('#topmenu1-list-span4').css({'border-bottom':'3px solid #bbb'})
@@ -1305,7 +1366,8 @@ $(function(){
 				$('#list-ul-li4').css({'border':'3px solid #999'})
 				$('#slide-wrap').css({'display':'block'})
 				$('#slide-wrap-i').css({'display':'none'})
-				flashSommon();
+				// flashSommon();
+				new PageSummon('플래시작업페이지 콘텐츠 묶음','<h2>플래시</h2>','flash');
 			}else if(location.href==portfolioindex_url+'/sub/sub5.html'){
 				$('.topmenu1-list-span').css({'border-bottom':'0px solid #bbb'})
 				$('#topmenu1-list-span5').css({'border-bottom':'3px solid #bbb'})
@@ -1315,7 +1377,7 @@ $(function(){
 				$('#list-ul-li5').css({'border':'3px solid #999'})
 				$('#slide-wrap').css({'display':'block'})
 				$('#slide-wrap-i').css({'display':'none'})
-				imageSommon();
+				new PageSummon('랜더링및편집작업페이지 콘텐츠 묶음','<h2>2D랜더링&편집작업</h2>','image');
 			}
 			title_changer();
 			$('.body-filter-preloader').hide();
@@ -1964,6 +2026,7 @@ $(function(){
 		if ((event.type=='click')||((event.type=='keydown')&&((event.keyCode)||(event.which))===13)){
 			$('#click-all-filter-landing').css({'z-index':'-10','opacity':'0'})
 			$('.move-wrap1').animate({'opacity':'1'},300)
+			$('.move-wrap1').addClass('on');
 			$('#click-all-filter-landing').find('[tabindex]').attr('tabindex','-1');
 			$body.css({'overflow-y':''});
 			$('.body-section-content, header, footer').find('[tabindex]').attr('tabindex','0');
