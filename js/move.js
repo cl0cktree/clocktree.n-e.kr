@@ -1491,19 +1491,21 @@ $(function(){
 					$('#section1-article1-nav1').css({'background':'rgba(0,0,0,0.5)'})
 					$('.nav1-topmenu1-list a').css({'color':'#fff'})
 					$('#phon-icon').css('background-position','-80px -40px')
+					$('#menu-icon').addClass('scroll_on');
 		
 					$('#section1-article1-nav1').mouseover(function(){
 						$('#section1-article1-nav1').stop().css({'background':'#fff'})
 						$('.nav1-topmenu1-list a').css({'color':'#333'})
 						$('.list-span-leftborder,.list-span-rightborder').css('border-bottom','3px solid #4e3b29')
 						$('#phon-icon').css('background-position','-80px 0px')
-		
+						$('#menu-icon').removeClass('scroll_on');
 					})
 					$('#section1-article1-nav1').mouseleave(function(){
 						$('#section1-article1-nav1').stop().css({'background':'rgba(0,0,0,0.5)'})
 						$('.nav1-topmenu1-list a').css({'color':'#fff'})
 						$('.list-span-leftborder,.list-span-rightborder').css('border-bottom','3px solid #fff')
 						$('#phon-icon').css('background-position','-80px -40px')
+						$('#menu-icon').addClass('scroll_on');
 		
 					})
 		
@@ -1646,9 +1648,10 @@ $(function(){
 						$('.nav1-topmenu1-list a').css({'color':'#333'})
 						$('.list-span-leftborder,.list-span-rightborder').css('border-bottom','3px solid #4e3b29')
 						$('#phon-icon').css('background-position','-80px 0px')
-		
+						$('#menu-icon').removeClass('scroll_on');
 					})
 					$('#phon-icon').css('background-position','-80px 0px')
+					$('#menu-icon').removeClass('scroll_on');
 				}
 				var scpar
 				if ((location.href==portfolioindex_url+'/index.html')||(location.href==portfolioindex_url+'/')||(location.href==portfolioindex_url+''))
@@ -1672,7 +1675,7 @@ $(function(){
 				}
 				// --스크롤 시 좌우에서 중앙으로 이동하며 컨탠츠가 보이게 함.--
 				$('.article-main-scrollall').each(function(){
-					var topminus3 = 71;
+					var topminus3 = 133;
 					if ($(window).scrollTop()>50)
 					{
 						$('.move-wrap1').addClass('on');
@@ -1741,9 +1744,9 @@ $(function(){
 					var topminus2 = 0;
 					if ($('#article1-nav1-topmenu1').css('display')=='block')
 					{
-						var topminus2 = 56;
+						var topminus2 = 81;
 					}else{
-						var topminus2 = 106;
+						var topminus2 = 131;
 					}
 					if ($(window).scrollTop()>=$(this).offset().top-topminus2)
 					{
