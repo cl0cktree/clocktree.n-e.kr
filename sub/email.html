@@ -10,12 +10,12 @@
     <title>문의메일</title>
     <link rel="stylesheet" type="text/css" href="../css/email.css">
     <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript" src="../js/email.min.js"></script>
     <!-- <script type="text/javascript" src="./js/email.min.js"></script> -->
     
   </head>
  
-  <body>
+  <div>
      <script type="text/javascript">
         (function() {
             // https://dashboard.emailjs.com/admin/account
@@ -29,6 +29,7 @@
       var p_button;
       var h_button;
       var e_mail;
+      var form_tabindex;
       var e_name;
       var e_title;
       var message_input;
@@ -39,6 +40,7 @@
 
         document.addEventListener("DOMContentLoaded", function(){
             e_mail =document.getElementById('email');
+            form_tabindex = document.getElementById('contact_form').querySelectorAll('*[tabindex]');
             e_name = document.getElementById('name');
             e_title = document.getElementById('title');
             message_input = document.getElementById('message');
@@ -51,7 +53,9 @@
               popup_content = document.querySelector('.popup_content');
               vali = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
               console.log('dimm_filter = '+dimm_filter.className);
-
+              
+              // form_tabindex.value=-1;
+              // console.log('form_tabindex = '+form_tabindex.attribute);
               dimm_filter.classList.add('on');
               if(e_mail.value==''){
                 popup_content.querySelector('p').innerHTML+='<span>이메일을 입력 해주세요.</span><br>';
@@ -72,6 +76,7 @@
                 p_button.click();
                 dimm_filter.classList.remove('on');
               };
+              popup_close.focus();
             };
             popup_close.addEventListener('click',function(){
               dimm_filter.classList.remove('on');
@@ -90,6 +95,7 @@
                             // console.log('SUCCESS!');
                             dimm_filter.classList.add('on');
                             popup_content.querySelector('p').innerHTML+='<span>메일이 발송 되었습니다.</span><br>';
+                            popup_close.focus();
                             // alert('메일이 발송 되었습니다.');
                             e_mail.value='';
                             e_name.value='';
@@ -99,6 +105,7 @@
                             // console.log('FAILED...', error);
                             dimm_filter.classList.add('on');
                             popup_content.querySelector('p').innerHTML+='<span>메일 발송에 실패하였습니다.</span><br>';
+                            popup_close.focus();
                             // alert('메일 발송에 실패하였습니다.');
                         });
                 
@@ -106,6 +113,7 @@
 
         });
     </script>
+    <div class="email_wrap" id="email_wrap">
     <form id="mail_form">
       <div class="contact_form" id="contact_form">
         <h3>이메일 문의</h3>
@@ -113,25 +121,25 @@
 		      <tr>
             <th>이메일</th>
             <td>
-              <input type="text" id="email" name="email" size="32" tabindex="1" placeholder="이메일 입력" aria-hidden="false" aria-label="이메일 입력" required/>
+              <input type="text" id="email" name="email" size="32" tabindex="0" placeholder="이메일 입력" aria-hidden="false" aria-label="이메일 입력" required/>
             </td>
           </tr>
           <tr>
             <th>보내는 사람</th>
             <td>
-              <input type="text" id="name" name="name" size="32" tabindex="2" placeholder="이름 입력" aria-hidden="false" aria-label="이름 입력" required/>
+              <input type="text" id="name" name="name" size="32" tabindex="0" placeholder="이름 입력" aria-hidden="false" aria-label="이름 입력" required/>
             </td>
           </tr>
           <tr>
             <th>제목</th>
             <td>
-              <input type="text" id="title" name="title" size="128" tabindex="3" placeholder="제목 입력" aria-hidden="false" aria-label="제목 입력" required/>
+              <input type="text" id="title" name="title" size="128" tabindex="0" placeholder="제목 입력" aria-hidden="false" aria-label="제목 입력" required/>
             </td>
           </tr>
           <tr>
             <th>내용</th>
             <td>
-              <textarea id="message" name="message" rows="5" cols="26" tabindex="4" placeholder="내용 입력" aria-hidden="false" aria-label="내용 입력" required></textarea>
+              <textarea id="message" name="message" rows="5" cols="26" tabindex="0" placeholder="내용 입력" aria-hidden="false" aria-label="내용 입력" required></textarea>
             </td>
           </tr>
           <tr>
@@ -139,12 +147,13 @@
           </tr>
           <tr>
              <td colspan="2" style="padding-top:20px;">
-              <button id="h_button" type="button" tabindex="5" aria-hidden="false" aria-label="문의하기 버튼" value="문의하기">
+              <button id="path_button" type="submit" tabindex="-2" aria-hidden="true" aria-label="문의하기 버튼" value="문의하기">
                 문의하기
               </button>
-              <button id="path_button" type="submit" tabindex="-1" aria-hidden="true" aria-label="문의하기 버튼" value="문의하기">
+              <button id="h_button" type="button" tabindex="0" aria-hidden="false" aria-label="문의하기 버튼" value="문의하기">
                 문의하기
               </button>
+              
             </td>
           </tr>
         </table>
@@ -154,10 +163,11 @@
         <div class="popup_content">
             <p>
             </p>
-            <button id="popup_close" type="button" tabindex="5" aria-hidden="false" aria-label="확인 버튼" value="확인">
+            <button id="popup_close" type="button" tabindex="0" aria-hidden="false" aria-label="확인 버튼" value="확인">
                 확인
             </button>
         </div>
+    </div>
     </div>
     <script>
     $(function(){
@@ -172,27 +182,30 @@
       var hidden_input = document.getElementById('h_message');
 
       if(document.getElementById('mail_table')){
-          var conbox_contentswrap = document.getElementById('mail_table');
+          var email_wrap = document.getElementById('mail_table');
           // var filter_conbox_contentswrap = document.getElementById('filter-conbox-contentswrap');
           var all_filter_conbox = document.getElementById('all-filter-conbox');
           
-          $('#all-filter-conbox').find('[tabindex]').attr('tabindex','0');
-          $('#all-filter-conbox').find('[tabindex]').eq(0).focus();
+          // $('#all-filter-conbox').find('[tabindex]').attr('tabindex','0');
+          // $('#all-filter-conbox').find('[tabindex]').eq(0).focus();
           
-          $('#mail_table').on('keydown', function(e){
+          $('.email_wrap').find('[tabindex]').attr('tabindex','0');
+          $('.email_wrap').find('[tabindex]').eq(0).focus();
+          
+          $('.email_wrap').on('keydown', function(e){
             console.log('email tabindex');
 
             var this_on_focus;
 
-            var con_range = $('.all-filter-conbox, .conbox-contents-view').find('.filter-title-closebtn, .filter-conbox-contentswrap').find('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button, button:not([disabled]), submit, submit:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
+            var con_range = $('.all-filter-conbox, .conbox-contents-view, .email_wrap').find('.filter-title-closebtn, .filter-conbox-contentswrap').find('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button, button:not([disabled]), submit, submit:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
             var con_first = con_range.eq(0);
             var con_last = con_range.eq(con_range.length-1);
             
             var focus_content = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button, button:not([disabled]), submit, submit:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]';
-            var conbox_content = conbox_contentswrap.querySelectorAll(focus_content);
-            var first_content = conbox_contentswrap.querySelectorAll(focus_content)[0];
-            var last_content = conbox_contentswrap.querySelectorAll(focus_content)[conbox_content.length-1];
-            var first_content_0 = conbox_contentswrap.querySelectorAll(focus_content)[0];
+            var conbox_content = email_wrap.querySelectorAll(focus_content);
+            var first_content = email_wrap.querySelectorAll(focus_content)[0];
+            var last_content = email_wrap.querySelectorAll(focus_content)[conbox_content.length-1];
+            var first_content_0 = email_wrap.querySelectorAll(focus_content)[0];
 
             console.log('last_content = '+conbox_content.length);
 
@@ -201,11 +214,13 @@
             if ((e.keyCode===9 && !e.shiftKey)&&(this_on_focus==last_content)) {
               console.log('pop ride this_1');
               first_content.focus();
+              e.preventDefault();
             }
             if((e.keyCode===9 && e.shiftKey)&&(this_on_focus==first_content)) {
               console.log('pop ride this_2');
-              // last_content.focus();
-              first_content.focus();
+              last_content.focus();
+              // first_content.focus();
+              e.preventDefault();
             }
             // e.preventDefault();
           });
