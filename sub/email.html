@@ -76,11 +76,19 @@
                 p_button.click();
                 dimm_filter.classList.remove('on');
               };
+              form_tabindex.forEach(function(item){
+                item.setAttribute('tabindex','-1');
+              });
+              popup_close.setAttribute('tabindex','0');
               popup_close.focus();
             };
             popup_close.addEventListener('click',function(){
               dimm_filter.classList.remove('on');
               popup_content.querySelector('p').innerHTML='';
+              form_tabindex.forEach(function(item){
+                item.setAttribute('tabindex','0');
+              });
+              popup_close.setAttribute('tabindex','-1');
             });
             h_button.addEventListener('click',h_button_click);
 
@@ -101,11 +109,19 @@
                             e_name.value='';
                             e_title.value='';
                             message_input.value='';
+                            form_tabindex.forEach(function(item){
+                              item.setAttribute('tabindex','0');
+                            });
+                            popup_close.setAttribute('tabindex','-1');
                         }, (error) => {
                             // console.log('FAILED...', error);
                             dimm_filter.classList.add('on');
                             popup_content.querySelector('p').innerHTML+='<span>메일 발송에 실패하였습니다.</span><br>';
                             popup_close.focus();
+                            form_tabindex.forEach(function(item){
+                              item.setAttribute('tabindex','0');
+                            });
+                            popup_close.setAttribute('tabindex','-1');
                             // alert('메일 발송에 실패하였습니다.');
                         });
                 
@@ -121,19 +137,19 @@
 		      <tr>
             <th>이메일</th>
             <td>
-              <input type="text" id="email" name="email" size="32" tabindex="0" placeholder="이메일 입력" aria-hidden="false" aria-label="이메일 입력" required/>
+              <input type="text" inputmode="email" id="email" name="email" size="32" tabindex="0" placeholder="이메일 입력" aria-hidden="false" aria-label="이메일 입력" required/>
             </td>
           </tr>
           <tr>
             <th>보내는 사람</th>
             <td>
-              <input type="text" id="name" name="name" size="32" tabindex="0" placeholder="이름 입력" aria-hidden="false" aria-label="이름 입력" required/>
+              <input type="text" inputmode="text" id="name" name="name" size="32" tabindex="0" placeholder="이름 입력" aria-hidden="false" aria-label="이름 입력" required/>
             </td>
           </tr>
           <tr>
             <th>제목</th>
             <td>
-              <input type="text" id="title" name="title" size="128" tabindex="0" placeholder="제목 입력" aria-hidden="false" aria-label="제목 입력" required/>
+              <input type="text" inputmode="text" id="title" name="title" size="128" tabindex="0" placeholder="제목 입력" aria-hidden="false" aria-label="제목 입력" required/>
             </td>
           </tr>
           <tr>
@@ -163,7 +179,7 @@
         <div class="popup_content">
             <p>
             </p>
-            <button id="popup_close" type="button" tabindex="0" aria-hidden="false" aria-label="확인 버튼" value="확인">
+            <button id="popup_close" type="button" tabindex="-1" aria-hidden="false" aria-label="확인 버튼" value="확인">
                 확인
             </button>
         </div>
@@ -192,12 +208,12 @@
           $('.email_wrap').find('[tabindex]').attr('tabindex','0');
           $('.email_wrap').find('[tabindex]').eq(0).focus();
           
-          $('.email_wrap').on('keydown', function(e){
+          $('.email_wrap, .popup_content').on('keydown', function(e){
             console.log('email tabindex');
 
             var this_on_focus;
 
-            var con_range = $('.all-filter-conbox, .conbox-contents-view, .email_wrap').find('.filter-title-closebtn, .filter-conbox-contentswrap').find('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button, button:not([disabled]), submit, submit:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
+            var con_range = $('.all-filter-conbox, .conbox-contents-view, .email_wrap, .popup_content').find('.filter-title-closebtn, .filter-conbox-contentswrap').find('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button, button:not([disabled]), submit, submit:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
             var con_first = con_range.eq(0);
             var con_last = con_range.eq(con_range.length-1);
             
