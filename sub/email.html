@@ -37,8 +37,10 @@
       var dimm_filter;
       var popup_close;
       var vali;
+      var mail_table;
 
         document.addEventListener("DOMContentLoaded", function(){
+            mail_table = document.getElementById('mail_table');
             e_mail =document.getElementById('email');
             form_tabindex = document.getElementById('contact_form').querySelectorAll('*[tabindex]');
             e_name = document.getElementById('name');
@@ -89,9 +91,22 @@
                 item.setAttribute('tabindex','0');
               });
               popup_close.setAttribute('tabindex','-1');
+              h_button.focus();
             });
             h_button.addEventListener('click',h_button_click);
-
+            // mail_table.addEventListener('touchstart', function(e){
+              // form_tabindex.forEach(function(item){
+              //   item.focus();
+              //   console.log('item = '+item.getAttribute('name'));
+              // });
+              // e.preventDefault();
+            // });
+            form_tabindex.forEach(function(item){
+               item.addEventListener('touchstart', function(e){
+                 this.focus();
+                 console.log('focus this = '+this.getAttribute('id'));
+               });
+            });
 
             document.getElementById('mail_form').addEventListener('submit', function(event) {
                 event.preventDefault();
@@ -113,6 +128,7 @@
                               item.setAttribute('tabindex','0');
                             });
                             popup_close.setAttribute('tabindex','-1');
+                            h_button.focus();
                         }, (error) => {
                             // console.log('FAILED...', error);
                             dimm_filter.classList.add('on');
@@ -122,6 +138,7 @@
                               item.setAttribute('tabindex','0');
                             });
                             popup_close.setAttribute('tabindex','-1');
+                            h_button.focus();
                             // alert('메일 발송에 실패하였습니다.');
                         });
                 
@@ -198,6 +215,7 @@
       var hidden_input = document.getElementById('h_message');
 
       if(document.getElementById('mail_table')){
+          // var email_wrap = document.getElementById('mail_table');
           var email_wrap = document.getElementById('mail_table');
           // var filter_conbox_contentswrap = document.getElementById('filter-conbox-contentswrap');
           var all_filter_conbox = document.getElementById('all-filter-conbox');
@@ -213,11 +231,12 @@
 
             var this_on_focus;
 
-            var con_range = $('.all-filter-conbox, .conbox-contents-view, .email_wrap, .popup_content').find('.filter-title-closebtn, .filter-conbox-contentswrap').find('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button, button:not([disabled]), submit, submit:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
+            var con_range = $('.all-filter-conbox, .conbox-contents-view, .email_wrap, .popup_content, .dimm_filter').find('.filter-title-closebtn, .filter-conbox-contentswrap, .popup_content').find('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button, button:not([disabled]), submit, submit:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
             var con_first = con_range.eq(0);
             var con_last = con_range.eq(con_range.length-1);
             
             var focus_content = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button, button:not([disabled]), submit, submit:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]';
+           
             var conbox_content = email_wrap.querySelectorAll(focus_content);
             var first_content = email_wrap.querySelectorAll(focus_content)[0];
             var last_content = email_wrap.querySelectorAll(focus_content)[conbox_content.length-1];
@@ -240,6 +259,47 @@
             }
             // e.preventDefault();
           });
+      };
+
+      if(document.querySelector('.dimm_filter')){
+        var dimm_wrap = document.querySelector('.dimm_filter');
+
+        $('.dimm_filter').find('[tabindex]').attr('tabindex','0');
+        $('.dimm_filter').find('[tabindex]').eq(0).focus();
+
+        $('.dimm_filter').on('keydown', function(e){
+          var this_on_focus;
+
+          var con_range = $('.all-filter-conbox, .conbox-contents-view, .email_wrap, .popup_content, .dimm_filter').find('.filter-title-closebtn, .filter-conbox-contentswrap, .popup_content').find('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button, button:not([disabled]), submit, submit:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
+          var con_first = con_range.eq(0);
+          var con_last = con_range.eq(con_range.length-1);
+            
+          var focus_content = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button, button:not([disabled]), submit, submit:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]';
+           
+          var conbox_content = dimm_wrap.querySelectorAll(focus_content);
+          var first_content = dimm_wrap.querySelectorAll(focus_content)[0];
+          var last_content = dimm_wrap.querySelectorAll(focus_content)[conbox_content.length-1];
+          var first_content_0 = dimm_wrap.querySelectorAll(focus_content)[0];
+
+          console.log('last_content = '+conbox_content.length);
+
+          this_on_focus = document.activeElement;
+          console.log('this_on_focus = '+this_on_focus);
+          if ((e.keyCode===9 && !e.shiftKey)&&(this_on_focus==last_content)) {
+            console.log('pop ride this_1');
+            first_content.focus();
+            e.preventDefault();
+          }
+          if((e.keyCode===9 && e.shiftKey)&&(this_on_focus==first_content)) {
+            console.log('pop ride this_2');
+            last_content.focus();
+            // first_content.focus();
+            e.preventDefault();
+          }
+          if (e.keyCode === 27){
+            $('#popup_close').click();
+          }
+        });
       };
       // function conbox_contents(){ // 높은 단계의 모달로그 컨텐츠의 포커스 요소만 순회 함수 + esc 키 눌렀을 시 닫히기
       //   if(document.getElementById('mail_form')){
